@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reza por un Cardenal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #cf202f;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    input, button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #cf202f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reza por un Cardenal</h1>
+  <p>Introduce tu fecha de cumpleaños y descubre qué cardenal te ha sido asignado para acompañarlo con tu oración.</p>
+  <input type="date" id="birthdate">
+  <button onclick="findCardinal()">Descubrir</button>
+  <div id="result"></div>
+
+  <script>
+    const cardinals = [
+      { start: '01-01', end: '03-01', name: 'Cardenal Pietro Parolin' },
+      { start: '04-01', end: '06-01', name: 'Cardenal Luis Antonio Tagle' },
+      { start: '07-01', end: '09-01', name: 'Cardenal Matteo Zuppi' },
+      { start: '10-01', end: '12-01', name: 'Cardenal Jean-Claude Hollerich' },
+      { start: '13-01', end: '15-01', name: 'Cardenal Blase Cupich' },
+      { start: '16-01', end: '18-01', name: 'Cardenal Joseph Tobin' },
+      { start: '19-01', end: '21-01', name: 'Cardenal Kevin Farrell' },
+      { start: '22-01', end: '24-01', name: 'Cardenal Christoph Schönborn' },
+      { start: '25-01', end: '27-01', name: 'Cardenal Óscar Rodríguez Maradiaga' },
+      { start: '28-01', end: '30-01', name: 'Cardenal Seán Patrick O'Malley' },
+      { start: '31-01', end: '02-02', name: 'Cardenal Reinhard Marx' },
+      { start: '03-02', end: '05-02', name: 'Cardenal Timothy Dolan' },
+      { start: '06-02', end: '08-02', name: 'Cardenal Dominique Mamberti' },
+      { start: '09-02', end: '11-02', name: 'Cardenal Marcello Semeraro' },
+      { start: '12-02', end: '14-02', name: 'Cardenal Joseph Coutts' },
+      { start: '15-02', end: '17-02', name: 'Cardenal Oswald Gracias' },
+      { start: '18-02', end: '20-02', name: 'Cardenal Daniel DiNardo' },
+      { start: '21-02', end: '23-02', name: 'Cardenal Gérald Lacroix' },
+      { start: '24-02', end: '26-02', name: 'Cardenal Angelo De Donatis' },
+      { start: '27-02', end: '29-02', name: 'Cardenal Wilton Gregory' },
+      { start: '01-03', end: '03-03', name: 'Cardenal John Onaiyekan' },
+      { start: '04-03', end: '06-03', name: 'Cardenal Mario Grech' },
+      { start: '07-03', end: '09-03', name: 'Cardenal Charles Maung Bo' },
+      { start: '10-03', end: '12-03', name: 'Cardenal Jean Zerbo' },
+      { start: '13-03', end: '15-03', name: 'Cardenal Víctor Manuel Fernández' },
+      { start: '16-03', end: '18-03', name: 'Cardenal Giuseppe Betori' },
+      { start: '19-03', end: '21-03', name: 'Cardenal Albert Malcolm Ranjith' },
+      { start: '22-03', end: '24-03', name: 'Cardenal Raymond Burke' },
+      { start: '25-03', end: '27-03', name: 'Cardenal Pedro Barreto' },
+      { start: '28-03', end: '30-03', name: 'Cardenal Leonardo Sandri' },
+      { start: '31-03', end: '02-04', name: 'Cardenal Péter Erdő' },
+      { start: '29-12', end: '31-12', name: 'Cardenal Emilio Carlos Berlie' }
+    ];
+
+    function findCardinal() {
+      const dateInput = document.getElementById("birthdate").value;
+      if (!dateInput) return;
+      const [year, month, day] = dateInput.split("-");
+      const target = `${day.padStart(2, '0')}-${month.padStart(2, '0')}`;
+      const result = cardinals.find(c => target >= c.start && target <= c.end);
+      document.getElementById("result").textContent = result 
+        ? `Tu cardenal es: ${result.name}` 
+        : "No se encontró un cardenal para esa fecha.";
+    }
+  </script>
+</body>
+</html>
